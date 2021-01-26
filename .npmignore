@@ -1,0 +1,10 @@
+src/
+tsconfig.json
+nodemon.json
+.prettierrc.js
+.prettieringore
+.eslintrc.js
+.eslintignore
+.editorconfig
+.vscode
+.github

@@ -1,0 +1,15 @@
+{
+  "delay": "1000",
+  "ignore": [
+    ".github",
+    ".vscode",
+    "src",
+    ".eslintrc.js",
+    ".gitignore",
+    "LICENSE",
+    "nodemon.json",
+    "package.json",
+    "README.md",
+    "yarn.lock"
+  ]
+}
