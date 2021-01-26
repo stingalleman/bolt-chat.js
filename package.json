@@ -4,6 +4,14 @@
   "repository": "git@github.com:stingalleman/bolt.js.git",
   "author": "Sting Alleman <stingalleman@icloud.com>",
   "license": "MIT",
+  "main": "./dist",
+  "maintainers": [
+    {
+      "name": "Sting Alleman",
+      "email": "stingalleman@icloud.com",
+      "url": "https://github.com/stingalleman"
+    }
+  ],
   "scripts": {
     "dev": "nodemon dist/",
     "compile": "tsc -p .",
