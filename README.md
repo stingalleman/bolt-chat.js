@@ -1,6 +1,6 @@
-# bolt.js
+# bolt-chat.js
 
-> Node.JS library for interacting with the bolt.chat protocol, made in TypeScript.
+> Node.JS library for interacting with the [bolt.chat](github.com/bolt-chat/bolt.chat) protocol, made in TypeScript.
 
 ## Author
 
