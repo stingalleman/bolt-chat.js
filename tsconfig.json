@@ -17,13 +17,14 @@
     "resolveJsonModule": true,
     "outDir": "dist/",
     "declaration": true,
-    "declarationMap": true,
-    "paths": {
-      "@lib": ["./lib"],
-      "@lib/*": ["./lib/*"],
-      "@interfaces": ["./src/interfaces"],
-      "@interfaces/*": ["./src/interfaces/*"]
-    }
+    "alwaysStrict": true,
+    "strict": true,
+    "incremental": true,
+    "noUnusedLocals": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "types": ["node"],
+    "rootDir": "src"
   },
   "include": ["src/"],
   "exclude": ["node_modules"]

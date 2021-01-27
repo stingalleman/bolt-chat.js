@@ -1,11 +1,10 @@
-import { IMessage, IConfig } from '@interfaces';
 import { Socket } from 'net';
+import { IMessage, IConfig } from '../../interfaces';
 import { Manager } from '../Manager';
 
 export class MessageManager extends Manager {
   constructor(private config: IConfig, private connection: Socket) {
-    super();
-    this.type = 'msg';
+    super('msg');
   }
 
   send(msg: string): void {

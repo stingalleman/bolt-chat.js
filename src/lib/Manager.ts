@@ -1,8 +1,11 @@
-import { EventType, IBaseEvent } from '@interfaces';
-import { MessageManager } from './Message/MessageManager';
+import { EventType, IBaseEvent } from '../interfaces';
 
 export abstract class Manager {
   protected type: EventType;
+
+  constructor(type: EventType) {
+    this.type = type;
+  }
 
   protected getRawEvent(time?: number): IBaseEvent {
     return {
