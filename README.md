@@ -6,6 +6,10 @@
 
 [Sting Alleman](https://github.com/stingalleman)
 
+### Special thanks
+
+This library is inspired by [Jip](https://github.com/jipFr)
+
 ## License
 
 [MIT](https://github.com/stingalleman/bolt.js/blob/develop/LICENSE)
