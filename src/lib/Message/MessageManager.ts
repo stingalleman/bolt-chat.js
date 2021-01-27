@@ -8,7 +8,7 @@ export class MessageManager extends Manager {
   }
 
   send(msg: string): void {
-    const time = new Date().getTime();
+    const time = Math.round(new Date().getTime() / 1000);
     const data: IMessage = {
       msg: {
         sent: time,
