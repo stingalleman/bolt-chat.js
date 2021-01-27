@@ -1,6 +1,5 @@
 src/
 tsconfig.json
-nodemon.json
 .prettierrc.js
 .prettieringore
 .eslintrc.js

@@ -13,7 +13,6 @@
     }
   ],
   "scripts": {
-    "dev": "nodemon dist/",
     "compile": "tsc -p .",
     "lint": "eslint **/*.ts",
     "lint:tsc": "tsc --noEmit -p .",
@@ -28,7 +27,6 @@
     "@typescript-eslint/parser": "^4.11.0",
     "eslint": "^7.16.0",
     "eslint-config-prettier": "^7.1.0",
-    "nodemon": "^2.0.6",
     "prettier": "^2.2.1",
     "typescript": "^4.1.3"
   }
