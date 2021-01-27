@@ -1,7 +1,9 @@
+import { EventType } from './EventType';
+
 export interface IBaseEvent {
   e: {
-    t: string;
-    c: number; // TODO: date (epoch)
-    r?: number; // TODO: date (epoch)
+    t: EventType;
+    c: number;
+    r?: number;
   };
 }
