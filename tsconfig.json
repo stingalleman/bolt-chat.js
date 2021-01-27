@@ -19,8 +19,10 @@
     "declaration": true,
     "declarationMap": true,
     "paths": {
-      "@client": ["./src/client"],
-      "@client/*": ["./src/client/*"]
+      "@lib": ["./lib"],
+      "@lib/*": ["./lib/*"],
+      "@interfaces": ["./src/interfaces"],
+      "@interfaces/*": ["./src/interfaces/*"]
     }
   },
   "include": ["src/"],
