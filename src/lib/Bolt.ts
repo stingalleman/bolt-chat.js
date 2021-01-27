@@ -3,19 +3,57 @@ import { IMessage, IConfig, EventType, IJoinLeave, IError, IMotd } from '../inte
 import { MessageManager } from './Message/MessageManager';
 
 export class Bolt {
+  /**
+   * Everything related to message.
+   */
   message: MessageManager;
 
-  protected connection: Socket;
+  /**
+   * The socket used to connect to the server.
+   * You probaly shouldn't use this.
+   */
+  connection: Socket;
 
+  /**
+   * The config.
+   */
   protected config: IConfig;
 
   constructor(config: IConfig) {
     this.config = config;
-    this.connection = new Socket().connect({
-      host: this.config.host,
-      port: this.config.port
-    });
+    this.connection = new Socket();
     this.message = new MessageManager(this.config, this.connection);
+  }
+
+  async connect(callback?: () => void): Promise<void> {
+    return await new Promise((resolve, reject) => {
+      this.connection.connect(
+        {
+          port: this.config.port,
+          host: this.config.host
+        },
+        () => {
+          if (callback) callback();
+
+          resolve();
+        }
+      );
+
+      this.connection.on('error', reject); // TODO: check if this is valid
+
+      const time = Math.round(new Date().getTime() / 1000);
+      const joinData: IJoinLeave = {
+        user: {
+          nick: this.config.username
+        },
+        e: {
+          t: 'join',
+          c: time
+        }
+      };
+
+      this.connection.write(JSON.stringify(joinData));
+    });
   }
 
   /**
