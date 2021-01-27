@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "allowJs": false,
     "target": "ES2020",
     "module": "CommonJS",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "moduleResolution": "Node",
-    "removeComments": true,
+    "removeComments": false,
     "sourceMap": true,
     "baseUrl": "./",
     "lib": ["ES2020"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noErrorTruncation": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "resolveJsonModule": true,
     "outDir": "dist/",
     "declaration": true,
@@ -27,5 +27,5 @@
     "rootDir": "src"
   },
   "include": ["src/"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules/", "dist/"]
 }
