@@ -1,6 +1,5 @@
-import { EventType, IBaseEvent } from '@interfaces';
-import { IConfig } from '@interfaces/IConfig';
 import { Socket } from 'net';
+import { EventType, IMessage, IConfig } from '../interfaces';
 import { MessageManager } from './Message/MessageManager';
 
 export class Bolt {
@@ -19,9 +18,11 @@ export class Bolt {
     this.message = new MessageManager(this.config, this.connection);
   }
 
-  on(event: EventType, callback: (data: Buffer) => void): void {
+  on(event: EventType, callback: (data: IMessage) => void): void {
     this.connection.on('data', (d) => {
-      callback(d);
+      const data = JSON.parse(d.toString());
+      if (data.e.t !== event) return;
+      callback(data);
     });
   }
 }
