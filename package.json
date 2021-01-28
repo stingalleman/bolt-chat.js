@@ -1,6 +1,6 @@
 {
   "name": "bolt-chat.js",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "repository": "git@github.com:stingalleman/bolt.js.git",
   "author": "Sting Alleman <stingalleman@icloud.com>",
   "license": "MIT",
