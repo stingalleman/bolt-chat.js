@@ -5,17 +5,13 @@ import { EventType, IBaseEvent } from '../interfaces';
  * Manager class.
  */
 export abstract class Manager {
-  protected type: EventType;
+  constructor(private type: EventType) {}
 
-  constructor(type: EventType) {
-    this.type = type;
-  }
-
-  protected getRawEvent(time?: number): IBaseEvent {
+  protected getRawEvent(event?: EventType, time?: number): IBaseEvent {
     return {
       e: {
-        t: this.type,
-        c: time || new Date().getTime()
+        t: event || this.type,
+        c: time || Math.round(new Date().getTime() / 1000)
       }
     };
   }

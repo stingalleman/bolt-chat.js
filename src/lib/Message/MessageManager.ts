@@ -25,7 +25,7 @@ export class MessageManager extends Manager {
           nick: this.config.username
         }
       },
-      ...this.getRawEvent(time)
+      ...this.getRawEvent(undefined, time)
     };
 
     this.connection.write(JSON.stringify(data));
