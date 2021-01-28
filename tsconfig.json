@@ -20,7 +20,7 @@
     "alwaysStrict": true,
     "strict": true,
     "incremental": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
     "types": ["node"],

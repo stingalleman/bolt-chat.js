@@ -23,7 +23,7 @@ module.exports = {
       {
         publicOnly: true,
         require: {
-          ClassDeclaration: true,
+          ClassDeclaration: false,
           ClassExpression: true,
           MethodDefinition: true
         },
