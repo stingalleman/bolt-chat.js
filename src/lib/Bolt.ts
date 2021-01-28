@@ -1,22 +1,31 @@
 import { Socket } from 'net';
 import { IMessage, IConfig, EventType, IJoinLeave, IError, IMotd } from '../interfaces';
 import { MessageManager } from './Message/MessageManager';
+import { UserManager } from './User/UserManager';
 
 /**
  * Main Bolt class.
  */
 export class Bolt {
   /**
+   * Everything that has to do with a user.
+   */
+  public user: UserManager;
+
+  /**
    * Everything that has to do with a message.
    */
-  message: MessageManager;
+  public message: MessageManager;
 
   /**
    * The socet bolt-node.js uses to talk to the server. You probably shouldn't touch this.
    */
-  connection: Socket;
+  public connection: Socket;
 
-  protected config: IConfig;
+  /**
+   * Config you passed thru when making a new Bolt() instance.
+   */
+  public config: IConfig;
 
   /**
    * @param config Config.
@@ -24,7 +33,8 @@ export class Bolt {
   constructor(config: IConfig) {
     this.config = config;
     this.connection = new Socket();
-    this.message = new MessageManager(this.config, this.connection);
+    this.message = new MessageManager(this);
+    this.user = new UserManager(this);
   }
 
   /**
@@ -47,14 +57,13 @@ export class Bolt {
 
       this.connection.on('error', reject); // TODO: check if this is valid
 
-      const time = Math.round(new Date().getTime() / 1000);
       const joinData: IJoinLeave = {
         user: {
           nick: this.config.username
         },
         e: {
           t: 'join',
-          c: time
+          c: Math.round(new Date().getTime() / 1000)
         }
       };
 

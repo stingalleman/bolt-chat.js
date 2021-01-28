@@ -1,9 +1,9 @@
-import { Socket } from 'net';
-import { IMessage, IConfig } from '../../interfaces';
+import { IMessage } from '../../interfaces';
+import { Bolt } from '../Bolt';
 import { Manager } from '../Manager';
 
 export class MessageManager extends Manager {
-  constructor(private config: IConfig, private connection: Socket) {
+  constructor(private bolt: Bolt) {
     super('msg');
   }
 
@@ -19,12 +19,12 @@ export class MessageManager extends Manager {
         sent: time,
         body: msg,
         user: {
-          nick: this.config.username
+          nick: this.bolt.config.username
         }
       },
       ...this.getRawEvent(undefined, time)
     };
 
-    this.connection.write(JSON.stringify(data));
+    this.bolt.connection.write(JSON.stringify(data));
   }
 }
