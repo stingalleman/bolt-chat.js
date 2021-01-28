@@ -2,11 +2,19 @@ import { Socket } from 'net';
 import { IMessage, IConfig } from '../../interfaces';
 import { Manager } from '../Manager';
 
+/**
+ * Message class.
+ */
 export class MessageManager extends Manager {
   constructor(private config: IConfig, private connection: Socket) {
     super('msg');
   }
 
+  /**
+   * Send a message.
+   *
+   * @param msg Message to send.
+   */
   send(msg: string): void {
     const time = Math.round(new Date().getTime() / 1000);
     const data: IMessage = {

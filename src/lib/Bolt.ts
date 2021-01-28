@@ -2,29 +2,36 @@ import { Socket } from 'net';
 import { IMessage, IConfig, EventType, IJoinLeave, IError, IMotd } from '../interfaces';
 import { MessageManager } from './Message/MessageManager';
 
+/**
+ * Main Bolt class.
+ */
 export class Bolt {
   /**
-   * Everything related to message.
+   * Everything that has to do with a message.
    */
   message: MessageManager;
 
   /**
-   * The socket used to connect to the server.
-   * You probaly shouldn't use this.
+   * The socet bolt-node.js uses to talk to the server. You probably shouldn't touch this.
    */
   connection: Socket;
 
-  /**
-   * The config.
-   */
   protected config: IConfig;
 
+  /**
+   * @param config Config.
+   */
   constructor(config: IConfig) {
     this.config = config;
     this.connection = new Socket();
     this.message = new MessageManager(this.config, this.connection);
   }
 
+  /**
+   * Connect to the bolt.chat instance.
+   *
+   * @param callback Callback function.
+   */
   async connect(callback?: () => void): Promise<void> {
     return await new Promise((resolve, reject) => {
       this.connection.connect(
@@ -33,9 +40,8 @@ export class Bolt {
           host: this.config.host
         },
         () => {
-          if (callback) callback();
-
           resolve();
+          if (callback) callback();
         }
       );
 
@@ -56,11 +62,6 @@ export class Bolt {
     });
   }
 
-  /**
-   * Execute the callback if event.
-   * @param event Event to listen to.
-   * @param callback Callback function.
-   */
   public on(event: 'msg', callback: (data: IMessage) => void): void;
 
   public on(event: 'join', callback: (data: IJoinLeave) => void): void;
@@ -71,6 +72,12 @@ export class Bolt {
 
   public on(event: 'motd', callback: (data: IMotd) => void): void;
 
+  /**
+   * Execute the callback if event is fired.
+   *
+   * @param event Event to listen to.
+   * @param callback Callback function.
+   */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
   public on(event: EventType, callback: (data: any) => void): void {
     this.connection.on('data', (d) => {

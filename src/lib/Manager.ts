@@ -1,5 +1,9 @@
+/* eslint-disable jsdoc/require-jsdoc */
 import { EventType, IBaseEvent } from '../interfaces';
 
+/**
+ * Manager class.
+ */
 export abstract class Manager {
   protected type: EventType;
 
