@@ -1,5 +1,5 @@
 export interface IConfig {
   host: string;
-  port: number;
+  port?: number;
   username: string;
 }

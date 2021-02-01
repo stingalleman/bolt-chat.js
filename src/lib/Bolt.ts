@@ -46,7 +46,7 @@ export class Bolt {
     return await new Promise((resolve, reject) => {
       this.connection.connect(
         {
-          port: this.config.port,
+          port: this.config.port || 3300,
           host: this.config.host
         },
         () => {
