@@ -1,4 +1,6 @@
 import { Socket } from 'net';
+import { promises as dns } from 'dns';
+import { isIP } from '../util/isIp';
 import { IMessage, IConfig, EventType, IJoinLeave, IError, IMotd } from '../interfaces';
 import { MessageManager } from './Message/MessageManager';
 import { UserManager } from './User/UserManager';
@@ -43,11 +45,21 @@ export class Bolt {
    * @param callback Callback function.
    */
   async connect(callback?: () => void): Promise<void> {
+    let { host, port } = this.config;
+
+    if (!isIP(host)) {
+      const srv = await dns.resolveSrv(`_bolt._tcp.${host}`);
+      const ips = await dns.resolve(srv[0].name);
+
+      port = srv[0].port;
+      [host] = ips;
+    }
+
     return await new Promise((resolve, reject) => {
       this.connection.connect(
         {
-          port: this.config.port ?? 3300,
-          host: this.config.host
+          port: port ?? 3300,
+          host
         },
         () => {
           resolve();
