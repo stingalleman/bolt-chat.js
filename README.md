@@ -20,8 +20,6 @@ const bolt = new Bolt({
 
 async function bootstrap(): Promise<void> {
   bolt.on('msg', (data) => {
-    if (data.msg.user.nick === bolt.config.username) return;
-
     console.log(`${data.msg.user.nick} said: ${data.msg.body}`);
   });
 
