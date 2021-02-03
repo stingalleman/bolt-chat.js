@@ -213,6 +213,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/bn.js@npm:*":
+  version: 5.1.0
+  resolution: "@types/bn.js@npm:5.1.0"
+  dependencies:
+    "@types/node": "*"
+  checksum: e33009f99b19bfbef4591704c2deb18f3c55dc433435091895d462846b97bc22ec0440ff0a05439bc7e3a25b07f8bfd2c43215ee50523e4238a9e2865f98578e
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.3":
   version: 7.0.6
   resolution: "@types/json-schema@npm:7.0.6"
@@ -227,6 +236,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:*":
+  version: 14.14.22
+  resolution: "@types/node@npm:14.14.22"
+  checksum: e46e32685b4d0261779c13c10ba3ff220cfa714b5c12f8f571fd52cc309546bdbc8ffc86cbad20559ad88e7b17e66fc51c98b067d8c3766597092c05df157b9b
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^14.14.14":
   version: 14.14.20
   resolution: "@types/node@npm:14.14.20"
@@ -238,6 +254,15 @@ __metadata:
   version: 2.4.0
   resolution: "@types/normalize-package-data@npm:2.4.0"
   checksum: 6d077e73be7ac6227b678829c7bd765607136cdef537fd4ee7f368d9302a651aea924254d69826663322048436d90d6e7c679c9aa99c4824a687c568aab8ce4f
+  languageName: node
+  linkType: hard
+
+"@types/openpgp@npm:^4.4.15":
+  version: 4.4.15
+  resolution: "@types/openpgp@npm:4.4.15"
+  dependencies:
+    "@types/bn.js": "*"
+  checksum: d7b09f3f4b44d109dbc92d224152dc41b6fd9c9c37d17f63e0544b71ddc9694675f0c51b4fe03e00d18fb14b39a879cc30d5937257b84e4df32b9c7789be31b0
   languageName: node
   linkType: hard
 
@@ -561,6 +586,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"asn1.js@npm:^5.0.0":
+  version: 5.4.1
+  resolution: "asn1.js@npm:5.4.1"
+  dependencies:
+    bn.js: ^4.0.0
+    inherits: ^2.0.1
+    minimalistic-assert: ^1.0.0
+    safer-buffer: ^2.1.0
+  checksum: 4aa368fce1f2213c41016e4d739da9a65a8462d131146109afa9a5527e9071ec550b1b1d2e5b105044b90dc4bd6b6331bfd7a0a5bb12557604ebdfd330a788d0
+  languageName: node
+  linkType: hard
+
 "ast-types-flow@npm:^0.0.7":
   version: 0.0.7
   resolution: "ast-types-flow@npm:0.0.7"
@@ -612,6 +649,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bn.js@npm:^4.0.0":
+  version: 4.11.9
+  resolution: "bn.js@npm:4.11.9"
+  checksum: 31630d3560b28931010980886a0f657b37ce818ba237867cd838e89a1a0b71044fb4977aa56376616997b372bbb3f55d3bb25e5378c48c1d24a47bfb4235b60e
+  languageName: node
+  linkType: hard
+
 "bolt-chat.js@workspace:.":
   version: 0.0.0-use.local
   resolution: "bolt-chat.js@workspace:."
@@ -619,6 +663,7 @@ __metadata:
     "@tribecamp/eslint-config-base": ^1.1.2
     "@tribecamp/eslint-config-typescript": ^1.1.3
     "@types/node": ^14.14.14
+    "@types/openpgp": ^4.4.15
     "@typescript-eslint/eslint-plugin": ^4.14.1
     "@typescript-eslint/parser": ^4.14.1
     eslint: ^7.16.0
@@ -628,6 +673,7 @@ __metadata:
     eslint-plugin-jsdoc: ^31.4.0
     eslint-plugin-no-loops: ^0.3.0
     eslint-plugin-unicorn: ^27.0.0
+    openpgp: ^4.10.10
     prettier: ^2.2.1
     typescript: ^4.1.3
   languageName: unknown
@@ -1523,7 +1569,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.2":
+"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.2":
   version: 4.2.4
   resolution: "graceful-fs@npm:4.2.4"
   checksum: d095ee4dc6eacc76814cd52d5d185b860119378a6fd4888e7d4e94983095c54d4f6369942a5e3d759cdbdd4e3ee7eaeb27a39ff938c6ee4610894fd9de46b6cb
@@ -1615,7 +1661,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"inherits@npm:2":
+"inherits@npm:2, inherits@npm:^2.0.1":
   version: 2.0.4
   resolution: "inherits@npm:2.0.4"
   checksum: 98426da247ddfc3dcd7d7daedd90c3ca32d5b08deca08949726f12d49232aef94772a07b36cf4ff833e105ae2ef931777f6de4a6dd8245a216b9299ad4a50bea
@@ -1947,6 +1993,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minimalistic-assert@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "minimalistic-assert@npm:1.0.1"
+  checksum: 28f1de3cf9edfb82613428a58eb3dd38ec6d33ab761b98abf2d130c81104ea86be540c7e5eb8284f13e0a065ead8b17501de09419b9a98987ed27268ad538dba
+  languageName: node
+  linkType: hard
+
 "minimatch@npm:^3.0.4":
   version: 3.0.4
   resolution: "minimatch@npm:3.0.4"
@@ -1988,6 +2041,22 @@ __metadata:
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
   checksum: 2daf93d9bb516eddb06e2e80657a605af2e494d47c65d090ba43691aaffbc41f520840f1c9d3b7b641977af950217a4ab6ffb85bafcd5dfa8ba6fe4e68c43b53
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^2.1.2":
+  version: 2.6.1
+  resolution: "node-fetch@npm:2.6.1"
+  checksum: cbb171635e538162b977eac5dfe7a1e07a9a02e991924377a6435502291e2f823d306b95aabc455caebf4a118ccf836868462bc70ccc3095af02bb9da61fda37
+  languageName: node
+  linkType: hard
+
+"node-localstorage@npm:~1.3.0":
+  version: 1.3.1
+  resolution: "node-localstorage@npm:1.3.1"
+  dependencies:
+    write-file-atomic: ^1.1.4
+  checksum: 850b0aa74aa3a6984aecba785747347684f71d834afb03963701fef4a2414b90c7267cf71c01449d5d1f6b1b6d56cd6926be2d2ab3045d4b912b0f2798f816ba
   languageName: node
   linkType: hard
 
@@ -2078,6 +2147,17 @@ __metadata:
   dependencies:
     wrappy: 1
   checksum: 57afc246536cf6494437f982b26475f22bee860f8b77ce8eb1543f42a8bffe04b2c66ddfea9a16cb25ccb80943f8ee4fc639367ef97b7a6a4f2672eb573963f5
+  languageName: node
+  linkType: hard
+
+"openpgp@npm:^4.10.10":
+  version: 4.10.10
+  resolution: "openpgp@npm:4.10.10"
+  dependencies:
+    asn1.js: ^5.0.0
+    node-fetch: ^2.1.2
+    node-localstorage: ~1.3.0
+  checksum: 63bdf500737c854859b60879051ad8f6346f63e3c1271ca97f34791ab26efd86b5180e209b1a1dcb499e4ff94328fe65b326d2e60c6148dcbbc4fc3839ed4bc2
   languageName: node
   linkType: hard
 
@@ -2472,6 +2552,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"safer-buffer@npm:^2.1.0":
+  version: 2.1.2
+  resolution: "safer-buffer@npm:2.1.2"
+  checksum: 549ba83f5b314b59898efe3422120ce1ca7987a6eae5925a5fa5db930dc414d4a9dde0a5594f89638cd6ea60b6840ea961872908933ac2428d1726489db46fa5
+  languageName: node
+  linkType: hard
+
 "semver@npm:2 || 3 || 4 || 5":
   version: 5.7.1
   resolution: "semver@npm:5.7.1"
@@ -2534,6 +2621,13 @@ __metadata:
     astral-regex: ^2.0.0
     is-fullwidth-code-point: ^3.0.0
   checksum: f411aa051802605c3dc8523edee42d39ef59d7c36e6bef6bf1e61d9d2a83894187f6af56911a43ec8e58b921996722d75b354a4c3050b924426ffd1b05da33f9
+  languageName: node
+  linkType: hard
+
+"slide@npm:^1.1.5":
+  version: 1.1.6
+  resolution: "slide@npm:1.1.6"
+  checksum: 13cc5b7889a79dba9f84096d63319086eb63e5b6876cfb2ef57e6b40f81ff03b1e370c931f11024ffd3c5540e17e449405bbc23f34ae0314a73636fc9366a545
   languageName: node
   linkType: hard
 
@@ -2828,6 +2922,17 @@ typescript@^4.1.3:
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 519fcda0fcdf0c16327be2de9d98646742307bc830277e8868529fcf7566f2b330a6453c233e0cdcb767d5838dd61a90984a02ecc983bcddebea5ad0833bbf98
+  languageName: node
+  linkType: hard
+
+"write-file-atomic@npm:^1.1.4":
+  version: 1.3.4
+  resolution: "write-file-atomic@npm:1.3.4"
+  dependencies:
+    graceful-fs: ^4.1.11
+    imurmurhash: ^0.1.4
+    slide: ^1.1.5
+  checksum: 91e83d7e29a0360eb794177ae55bf461bf7e02c59b7c2d2d73a8f742d9274145d1d1fa788f604cc303808e42e8b5828744915e6a6311bfc2e338191ba728a575
   languageName: node
   linkType: hard
 
