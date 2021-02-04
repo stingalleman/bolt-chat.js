@@ -71,7 +71,7 @@ export class Bolt {
 
       const joinData: IJoinLeave = {
         user: {
-          nick: this.config.username
+          nick: this.config.identity.username
         },
         e: {
           t: 'join',
