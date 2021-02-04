@@ -19,7 +19,7 @@ export class MessageManager extends Manager {
         sent: time,
         body: msg,
         user: {
-          nick: this.bolt.config.username
+          nick: this.bolt.config.identity.username
         }
       },
       ...this.getRawEvent(undefined, time)

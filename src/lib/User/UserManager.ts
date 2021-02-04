@@ -15,6 +15,6 @@ export class UserManager extends Manager {
    * @param username Username to set.
    */
   setUsername(username: string): void {
-    this.bolt.config.username = username;
+    this.bolt.config.identity.username = username;
   }
 }
