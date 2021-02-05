@@ -1,5 +1,3 @@
-import { IBaseEvent } from './IBaseEvent';
-
-export interface IError extends IBaseEvent {
+export interface IError {
   err: string;
 }

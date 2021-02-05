@@ -1,7 +1,7 @@
 import { Socket } from 'net';
 import { promises as dns } from 'dns';
 import { isIP } from '../util/isIp';
-import { IMessage, IConfig, EventType, IJoinLeave, IError, IMotd } from '../interfaces';
+import { IMessage, IConfig, EventType, IJoinLeave, IError, IMotd, IBaseEvent } from '../interfaces';
 import { MessageManager } from './Message/MessageManager';
 import { UserManager } from './User/UserManager';
 
@@ -69,9 +69,11 @@ export class Bolt {
 
       this.connection.on('error', reject); // TODO: check if this is valid
 
-      const joinData: IJoinLeave = {
-        user: {
-          nick: this.config.identity.username
+      const joinData: IBaseEvent<IJoinLeave> = {
+        d: {
+          user: {
+            nick: this.config.identity.username
+          }
         },
         e: {
           t: 'join',

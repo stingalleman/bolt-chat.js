@@ -1,8 +1,6 @@
-import { IBaseEvent } from './IBaseEvent';
-
-export interface IMessage extends IBaseEvent {
+export interface IMessage {
   msg: {
-    sent: number; // TODO: date (epoch)
+    sent: number;
     body: string;
     user: { nick: string };
   };

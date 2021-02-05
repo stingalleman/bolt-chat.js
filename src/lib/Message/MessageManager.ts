@@ -1,4 +1,4 @@
-import { IMessage } from '../../interfaces';
+import { IBaseEvent, IMessage } from '../../interfaces';
 import { Bolt } from '../Bolt';
 import { Manager } from '../Manager';
 
@@ -14,15 +14,17 @@ export class MessageManager extends Manager {
    */
   send(msg: string): void {
     const time = Math.round(new Date().getTime() / 1000);
-    const data: IMessage = {
-      msg: {
-        sent: time,
-        body: msg,
-        user: {
-          nick: this.bolt.config.identity.username
+    const data: IBaseEvent<IMessage> = {
+      d: {
+        msg: {
+          sent: time,
+          body: msg,
+          user: {
+            nick: this.bolt.config.identity.username
+          }
         }
       },
-      ...this.getRawEvent(undefined, time)
+      ...this.getRawEvent<IMessage>('msg', time)
     };
 
     this.bolt.connection.write(JSON.stringify(data));
