@@ -10,6 +10,7 @@ export class UserManager extends Manager {
   }
 
   /**
+   * @deprecated
    * Set new username.
    *
    * @param username Username to set.
