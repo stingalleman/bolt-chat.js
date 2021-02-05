@@ -9,11 +9,11 @@ import { Manager } from '../Manager';
 export class UserManager extends Manager {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  pubKey: pgp.key.Key;
+  pubKey: pgp.key.Key; // TODO
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  privKey: pgp.key.Key;
+  privKey: pgp.key.Key; // TODO
 
   constructor(private bolt: Bolt) {
     super('msg');
@@ -36,6 +36,7 @@ export class UserManager extends Manager {
     const importedPubKey = await pgp.key.readArmored(
       await fs.promises.readFile(this.bolt.config.identity.pubKeyFile, 'utf-8')
     );
+    if (importedPubKey.err) throw importedPubKey.err[0];
 
     [this.pubKey] = importedPubKey.keys;
     return importedPubKey.keys[0];
@@ -48,6 +49,7 @@ export class UserManager extends Manager {
     const importedPrivKey = await pgp.key.readArmored(
       await fs.promises.readFile(this.bolt.config.identity.privKeyFile, 'utf-8')
     );
+    if (importedPrivKey.err) throw importedPrivKey.err[0];
 
     [this.privKey] = importedPrivKey.keys;
     return importedPrivKey.keys[0];
@@ -69,6 +71,6 @@ export class UserManager extends Manager {
 
       return signKey.signature;
     }
-    return 'oop';
+    return 'oop'; // TODO
   }
 }
