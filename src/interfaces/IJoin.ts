@@ -1,6 +1,4 @@
-import { IBaseEvent } from './IBaseEvent';
-
-export interface IJoinLeave extends IBaseEvent {
+export interface IJoinLeave {
   user: {
     nick: string;
   };

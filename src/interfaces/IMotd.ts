@@ -1,5 +1,3 @@
-import { IBaseEvent } from './IBaseEvent';
-
-export interface IMotd extends IBaseEvent {
+export interface IMotd {
   motd: string;
 }
