@@ -1,7 +1,7 @@
 export interface IMessage {
   msg: {
-    sent: number;
     body: string;
+    sig: string;
     user: { nick: string };
   };
 }
