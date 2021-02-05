@@ -89,15 +89,15 @@ export class Bolt {
     });
   }
 
-  public on(event: 'msg', callback: (data: IMessage) => void): void;
+  public on(event: 'msg', callback: (data: IBaseEvent<IMessage>) => void): void;
 
-  public on(event: 'join', callback: (data: IJoinLeave) => void): void;
+  public on(event: 'join', callback: (data: IBaseEvent<IJoinLeave>) => void): void;
 
-  public on(event: 'leave', callback: (data: IJoinLeave) => void): void;
+  public on(event: 'leave', callback: (data: IBaseEvent<IJoinLeave>) => void): void;
 
-  public on(event: 'err', callback: (data: IError) => void): void;
+  public on(event: 'err', callback: (data: IBaseEvent<IError>) => void): void;
 
-  public on(event: 'motd', callback: (data: IMotd) => void): void;
+  public on(event: 'motd', callback: (data: IBaseEvent<IMotd>) => void): void;
 
   /**
    * Execute the callback if event is fired.
@@ -107,10 +107,24 @@ export class Bolt {
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
   public on(event: EventType, callback: (data: any) => void): void {
-    this.connection.on('data', (d) => {
-      const data = JSON.parse(d.toString());
-      if (data.e.t !== event) return;
-      callback(data);
+    // TODO: optimize
+    let received = '';
+
+    this.connection.on('data', (data) => {
+      received += data;
+      const messages = received.split('\n');
+
+      if (messages.length > 1) {
+        messages.forEach((msg) => {
+          if (msg !== '') {
+            const jsonMsg = JSON.parse(msg);
+            if (jsonMsg.e.t !== event) return;
+            callback(jsonMsg);
+
+            received = '';
+          }
+        });
+      }
     });
   }
 }
