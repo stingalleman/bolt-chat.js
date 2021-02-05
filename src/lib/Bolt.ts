@@ -55,6 +55,9 @@ export class Bolt {
       [host] = ips;
     }
 
+    await this.user.readPrivKey();
+    await this.user.readPubKey();
+
     return await new Promise((resolve, reject) => {
       this.connection.connect(
         {
@@ -72,6 +75,7 @@ export class Bolt {
       const joinData: IBaseEvent<IJoinLeave> = {
         d: {
           user: {
+            pubkey: this.user.pubKey.armor(),
             nick: this.config.identity.username
           }
         },

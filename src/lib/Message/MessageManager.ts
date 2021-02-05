@@ -12,13 +12,13 @@ export class MessageManager extends Manager {
    *
    * @param msg Message to send.
    */
-  send(msg: string): void {
+  async send(msg: string): Promise<void> {
     const time = Math.round(new Date().getTime() / 1000);
     const data: IBaseEvent<IMessage> = {
       d: {
         msg: {
-          sent: time,
           body: msg,
+          sig: await this.bolt.user.getSign(msg),
           user: {
             nick: this.bolt.config.identity.username
           }
