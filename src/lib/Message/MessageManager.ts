@@ -4,7 +4,7 @@ import { Manager } from '../Manager';
 
 export class MessageManager extends Manager {
   constructor(private bolt: Bolt) {
-    super('msg');
+    super('msg', bolt.connection);
   }
 
   /**
@@ -14,7 +14,8 @@ export class MessageManager extends Manager {
    */
   async send(msg: string): Promise<void> {
     const time = Math.round(new Date().getTime() / 1000);
-    const data: IBaseEvent<IMessage> = {
+
+    this.writeJson<IMessage>({
       d: {
         msg: {
           body: msg,
@@ -24,9 +25,7 @@ export class MessageManager extends Manager {
           }
         }
       },
-      ...this.getRawEvent<IMessage>('msg', time)
-    };
-
-    this.bolt.connection.write(JSON.stringify(data));
+      ...this.getEvent<IMessage>('msg', time)
+    });
   }
 }
