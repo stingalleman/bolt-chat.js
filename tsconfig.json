@@ -24,8 +24,8 @@
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
     "types": ["node"],
-    "rootDir": "src"
+    "rootDir": "src/"
   },
-  "include": ["src/"],
+  "include": ["./src/**/*"],
   "exclude": ["node_modules/", "dist/"]
 }
