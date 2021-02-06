@@ -1,6 +1,7 @@
 import { Socket } from 'net';
 import { promises as dns } from 'dns';
 import { isIP } from '../util/isIp';
+import { BufferManager } from '../util/BufferManager';
 import { IMessage, IConfig, EventType, IJoinLeave, IError, IMotd, IBaseEvent } from '../interfaces';
 import { MessageManager } from './Message/MessageManager';
 import { UserManager } from './User/UserManager';
@@ -107,23 +108,15 @@ export class Bolt {
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
   public on(event: EventType, callback: (data: any) => void): void {
-    // TODO: optimize
-    let received = '';
+    const received = new BufferManager();
 
     this.connection.on('data', (data) => {
-      received += data;
-      const messages = received.split('\n');
-
-      if (messages.length > 1) {
-        messages.forEach((msg) => {
-          if (msg !== '') {
-            const jsonMsg = JSON.parse(msg);
-            if (jsonMsg.e.t !== event) return;
-            callback(jsonMsg);
-
-            received = '';
-          }
-        });
+      received.push(data);
+      // eslint-disable-next-line no-loops/no-loops
+      while (!received.isFinished()) {
+        const msg = JSON.parse(received.handleData());
+        if (msg.e.t !== event) return;
+        callback(msg);
       }
     });
   }
