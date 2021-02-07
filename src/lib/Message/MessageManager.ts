@@ -1,10 +1,10 @@
-import { IMessage } from '../../interfaces';
+import { EventType, IBaseEvent, IMessage } from '../../interfaces';
 import { Manager } from '../Manager';
 import { Server } from '../Server/Server';
 
 export class MessageManager extends Manager {
   constructor(private server: Server) {
-    super('msg', server.connection);
+    super();
   }
 
   /**
@@ -27,5 +27,32 @@ export class MessageManager extends Manager {
       },
       ...this.getEvent<IMessage>('msg', time)
     });
+  }
+
+  /**
+   * @param event Event.
+   * @param time Time.
+   */
+  protected getEvent<T>(event: EventType, time?: number): IBaseEvent<T> {
+    return {
+      e: {
+        t: event,
+        c: time || Math.round(new Date().getTime() / 1000)
+      }
+    };
+  }
+
+  /**
+   * Write JSON to server.
+   *
+   * @param data Data to write.
+   * @param callback Optional callback function.
+   */
+  protected writeJson<T>(data: IBaseEvent<T>, callback?: () => void): IBaseEvent<T> {
+    this.server.connection.write(JSON.stringify(data), () => {
+      if (callback) callback();
+    });
+
+    return data;
   }
 }

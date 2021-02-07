@@ -1,14 +1,16 @@
 import { IServerJoinConfig } from '../../interfaces';
 import { Bolt } from '../Bolt';
+import { Manager } from '../Manager';
 import { Server } from './Server';
 
-export class ServerManager {
+export class ServerManager extends Manager {
   /**
    * In here are all the servers we are currently connected to.
    */
   servers: Server[];
 
   constructor(private bolt: Bolt) {
+    super();
     this.servers = [];
   }
 
