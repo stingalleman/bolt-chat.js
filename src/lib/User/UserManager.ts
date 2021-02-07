@@ -16,7 +16,7 @@ export class UserManager extends Manager {
   privKey: pgp.key.Key; // TODO
 
   constructor(private bolt: Bolt) {
-    super('msg', bolt.connection);
+    super();
   }
 
   /**
