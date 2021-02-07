@@ -1,10 +1,10 @@
 import { IMessage } from '../../interfaces';
-import { Bolt } from '../Bolt';
 import { Manager } from '../Manager';
+import { Server } from '../Server/Server';
 
 export class MessageManager extends Manager {
-  constructor(private bolt: Bolt) {
-    super('msg', bolt.connection);
+  constructor(private server: Server) {
+    super('msg', server.connection);
   }
 
   /**
@@ -19,9 +19,9 @@ export class MessageManager extends Manager {
       d: {
         msg: {
           body: msg,
-          sig: await this.bolt.user.getSign(msg),
+          sig: await this.server.bolt.user.getSign(msg),
           user: {
-            nick: this.bolt.config.identity.username
+            nick: this.server.bolt.config.identity.username
           }
         }
       },
