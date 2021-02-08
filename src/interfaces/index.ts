@@ -3,6 +3,8 @@ export * from './IBaseEvent';
 export * from './IConfig';
 export * from './IServerConfig';
 export * from './IServerJoinConfig';
+export * from './IBoltEmitter';
+export * from './IEvents';
 export * from './IMessage';
 export * from './IJoin';
 export * from './IMotd';

@@ -13,8 +13,6 @@ export class MessageManager extends Manager {
    * @param msg Message to send.
    */
   async send(msg: string): Promise<void> {
-    const time = Math.round(new Date().getTime() / 1000);
-
     this.writeJson<IMessage>({
       d: {
         msg: {
@@ -25,21 +23,11 @@ export class MessageManager extends Manager {
           }
         }
       },
-      ...this.getEvent<IMessage>('msg', time)
-    });
-  }
-
-  /**
-   * @param event Event.
-   * @param time Time.
-   */
-  protected getEvent<T>(event: EventType, time?: number): IBaseEvent<T> {
-    return {
       e: {
-        t: event,
-        c: time || Math.round(new Date().getTime() / 1000)
+        t: 'msg',
+        c: Math.round(new Date().getTime() / 1000)
       }
-    };
+    });
   }
 
   /**
