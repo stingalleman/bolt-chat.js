@@ -13,6 +13,10 @@ import {
 import { Bolt } from '../Bolt';
 import { MessageManager } from '../Message/MessageManager';
 import { BufferManager } from '../../util/BufferManager';
+import { Message } from '../Message/Message';
+import { JoinLeave } from './JoinLeave';
+import { ServerError } from './ServerError';
+import { ServerMotd } from './ServerMotd';
 
 export class Server {
   /**
@@ -80,33 +84,28 @@ export class Server {
     });
   }
 
-  public on(event: 'msg', callback: (data: IBaseEvent<IMessage>) => void): void;
-
-  public on(event: 'join', callback: (data: IBaseEvent<IJoinLeave>) => void): void;
-
-  public on(event: 'leave', callback: (data: IBaseEvent<IJoinLeave>) => void): void;
-
-  public on(event: 'err', callback: (data: IBaseEvent<IError>) => void): void;
-
-  public on(event: 'motd', callback: (data: IBaseEvent<IMotd>) => void): void;
-
   /**
-   * Execute the callback if event is fired.
-   *
-   * @param event Event to listen to.
-   * @param callback Callback function.
+   * The connection handler of this server.
    */
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
-  public on(event: EventType, callback: (data: any) => void): void {
+  private connectionHandler(): void {
     const received = new BufferManager();
 
     this.connection.on('data', (data) => {
       received.push(data);
       // eslint-disable-next-line no-loops/no-loops
       while (!received.isFinished()) {
-        const msg = JSON.parse(received.handleData());
-        if (msg.e.t !== event) return;
-        callback(msg);
+        const msg = JSON.parse(received.handleData()) as IBaseEvent<unknown>;
+        if (msg.e.t === 'msg') {
+          const message = new Message(this, msg as IBaseEvent<IMessage>);
+          this.bolt.emit('msg', message);
+        } else if (msg.e.t === 'join' || msg.e.t === 'leave') {
+          const joinOrLeave = new JoinLeave(this, msg as IBaseEvent<IJoinLeave>);
+          this.bolt.emit(msg.e.t, joinOrLeave);
+        } else if (msg.e.t === 'err') {
+          this.bolt.emit('err', new ServerError(this, msg as IBaseEvent<IError>));
+        } else if (msg.e.t === 'motd') {
+          this.bolt.emit('motd', new ServerMotd(this, msg as IBaseEvent<IMotd>));
+        }
       }
     });
   }

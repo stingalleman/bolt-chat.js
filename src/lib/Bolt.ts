@@ -1,11 +1,12 @@
-import { IConfig } from 'src';
+import { EventEmitter } from 'events';
+import { IConfig, IBoltEmitter, IEvents } from '../interfaces';
 import { ServerManager } from './Server/ServerManager';
 import { UserManager } from './User/UserManager';
 
 /**
  * Main Bolt class.
  */
-export class Bolt {
+export class Bolt extends (EventEmitter as new () => IBoltEmitter<IEvents>) {
   /**
    * Everything that has to do with a user.
    */
@@ -25,6 +26,7 @@ export class Bolt {
    * @param config Config.
    */
   constructor(config: IConfig) {
+    super();
     this.config = config;
     this.user = new UserManager(this);
     this.servers = new ServerManager(this);

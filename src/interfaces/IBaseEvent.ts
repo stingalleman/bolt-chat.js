@@ -6,5 +6,5 @@ export interface IBaseEvent<T> {
     c: number;
     r?: number;
   };
-  d?: T;
+  d: T;
 }
