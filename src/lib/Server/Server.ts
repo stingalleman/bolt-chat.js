@@ -9,8 +9,9 @@ import { Message } from '../Message/Message';
 import { JoinLeave } from './JoinLeave';
 import { ServerError } from './ServerError';
 import { ServerMotd } from './ServerMotd';
+import { Manager } from '../Manager';
 
-export class Server {
+export class Server extends Manager {
   /**
    * The socet bolt-node.js uses to talk to the server. You probably shouldn't touch this.
    */
@@ -22,6 +23,7 @@ export class Server {
   public message: MessageManager;
 
   constructor(public bolt: Bolt, public config: IServerConfig) {
+    super();
     this.connection = new Socket();
     this.message = new MessageManager(this);
   }
@@ -59,18 +61,12 @@ export class Server {
 
       this.connection.on('error', reject); // TODO: check if this is valid
 
-      const joinData: IBaseEvent<IJoinLeave> = {
-        d: {
-          user: {
-            pubkey: this.bolt.user.pubKey.armor(),
-            username: this.bolt.config.identity.username
-          }
-        },
-        e: {
-          t: 'join',
-          c: Math.round(new Date().getTime() / 1000)
+      const joinData: IBaseEvent<IJoinLeave> = this.getEvent('join', {
+        user: {
+          pubkey: this.bolt.user.pubKey.armor(),
+          username: this.bolt.config.identity.username
         }
-      };
+      });
 
       this.connectionHandler();
 
