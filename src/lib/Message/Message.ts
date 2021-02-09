@@ -30,7 +30,7 @@ export class Message {
     this.signature = data.d.msg.sig;
 
     this.author = {
-      username: data.d.msg.user.username
+      username: data.d.msg.user.nick
     };
   }
 }

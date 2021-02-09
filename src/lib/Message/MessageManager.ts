@@ -20,7 +20,7 @@ export class MessageManager extends Manager {
           body: msg,
           sig: await this.server.bolt.user.getSign(msg),
           user: {
-            username: this.server.bolt.config.identity.username
+            nick: this.server.bolt.config.identity.username
           }
         }
       })

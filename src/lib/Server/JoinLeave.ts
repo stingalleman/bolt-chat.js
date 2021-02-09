@@ -16,7 +16,7 @@ export class JoinLeave {
     this.server = server;
 
     this.user = {
-      username: data.d.user.username,
+      username: data.d.user.nick,
       pubkey: data.d.user.pubkey
     };
   }

@@ -6,6 +6,6 @@ export * from './IServerJoinConfig';
 export * from './IBoltEmitter';
 export * from './IEvents';
 export * from './IMessage';
-export * from './IJoin';
+export * from './IJoinLeave';
 export * from './IMotd';
 export * from './IError';

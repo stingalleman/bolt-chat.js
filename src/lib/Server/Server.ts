@@ -64,7 +64,7 @@ export class Server extends Manager {
       const joinData: IBaseEvent<IJoinLeave> = this.getEvent('join', {
         user: {
           pubkey: this.bolt.user.pubKey.armor(),
-          username: this.bolt.config.identity.username
+          nick: this.bolt.config.identity.username
         }
       });
 

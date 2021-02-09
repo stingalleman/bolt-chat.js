@@ -1,6 +1,6 @@
 export interface IJoinLeave {
   user: {
-    username: string;
+    nick: string;
     pubkey: string;
   };
 }
