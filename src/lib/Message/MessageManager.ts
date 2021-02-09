@@ -1,4 +1,4 @@
-import { EventType, IBaseEvent, IMessage } from '../../interfaces';
+import { IBaseEvent, IMessage } from '../../interfaces';
 import { Manager } from '../Manager';
 import { Server } from '../Server/Server';
 

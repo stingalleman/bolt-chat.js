@@ -1,15 +1,7 @@
 import { Socket } from 'net';
 import { promises as dns } from 'dns';
 import { isIP } from '../../util/isIp';
-import {
-  EventType,
-  IBaseEvent,
-  IError,
-  IJoinLeave,
-  IMessage,
-  IMotd,
-  IServerConfig
-} from '../../interfaces';
+import { IBaseEvent, IError, IJoinLeave, IMessage, IMotd, IServerConfig } from '../../interfaces';
 import { Bolt } from '../Bolt';
 import { MessageManager } from '../Message/MessageManager';
 import { BufferManager } from '../../util/BufferManager';
@@ -79,7 +71,7 @@ export class Server {
           c: Math.round(new Date().getTime() / 1000)
         }
       };
-          
+
       this.connectionHandler();
 
       this.connection.write(JSON.stringify(joinData));
