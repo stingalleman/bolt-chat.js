@@ -79,6 +79,8 @@ export class Server {
           c: Math.round(new Date().getTime() / 1000)
         }
       };
+          
+      this.connectionHandler();
 
       this.connection.write(JSON.stringify(joinData));
     });
