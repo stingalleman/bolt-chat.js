@@ -16,19 +16,28 @@ export class ServerManager extends Manager {
 
   /**
    * @param config The config object to join a server.
+   * @param callback Callback. Will only run if config.callback is set to true (default).
    */
-  async join(config: IServerJoinConfig): Promise<Server> {
+  async join(config: IServerJoinConfig, callback?: (server: Server) => void): Promise<Server> {
     const server = new Server(this.bolt, config);
-    if (config.autoConnect === undefined ? true : config.autoConnect) await server.connect();
+    if (config.autoConnect === undefined ? true : config.autoConnect) {
+      await server.connect(() => {
+        if (callback) callback(server);
+      });
+    }
+
     this.servers.push(server);
     return server;
   }
 
   /**
    * @param server The server you want to leave.
+   * @param callback Callback.
    */
-  leave(server: Server): void {
+  leave(server: Server, callback?: () => void): void {
     server.connection.end();
     this.servers.splice(this.servers.indexOf(server), 1);
+
+    if (callback) callback();
   }
 }
