@@ -63,7 +63,7 @@ export class Server {
         d: {
           user: {
             pubkey: this.bolt.user.pubKey.armor(),
-            nick: this.bolt.config.identity.username
+            username: this.bolt.config.identity.username
           }
         },
         e: {

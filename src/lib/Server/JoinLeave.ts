@@ -10,13 +10,13 @@ export class JoinLeave {
   /**
    * The user that joined or left.
    */
-  public user: { nickname: string; pubkey: string };
+  public user: { username: string; pubkey: string };
 
   constructor(server: Server, data: IBaseEvent<IJoinLeave>) {
     this.server = server;
 
     this.user = {
-      nickname: data.d.user.nick,
+      username: data.d.user.username,
       pubkey: data.d.user.pubkey
     };
   }

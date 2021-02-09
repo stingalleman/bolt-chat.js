@@ -33,7 +33,7 @@ async function bootstrap(): Promise<void> {
   );
 
   bolt.on('msg', (msg) => {
-    console.log(`${msg.author.nickname} said: ${msg.content}`);
+    console.log(`${msg.author.username} said: ${msg.content}`);
   });
 }
 

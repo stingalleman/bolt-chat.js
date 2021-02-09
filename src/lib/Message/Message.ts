@@ -20,7 +20,7 @@ export class Message {
   /**
    * The author is this message.
    */
-  public author: { nickname: string };
+  public author: { username: string };
 
   constructor(server: Server, data: IBaseEvent<IMessage>) {
     this.server = server;
@@ -30,7 +30,7 @@ export class Message {
     this.signature = data.d.msg.sig;
 
     this.author = {
-      nickname: data.d.msg.user.nick
+      username: data.d.msg.user.username
     };
   }
 }
