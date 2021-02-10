@@ -1,7 +1,15 @@
 import { Socket } from 'net';
 import { promises as dns } from 'dns';
+import * as pgp from 'openpgp';
 import { isIP } from '../../util/isIp';
-import { IBaseEvent, IError, IJoinLeave, IMessage, IMotd, IServerConfig } from '../../interfaces';
+import {
+  IBaseEvent,
+  IError,
+  IJoinLeave,
+  IMessageReceived,
+  IMotd,
+  IServerConfig
+} from '../../interfaces';
 import { Bolt } from '../Bolt';
 import { MessageManager } from '../Message/MessageManager';
 import { BufferManager } from '../../util/BufferManager';
@@ -86,7 +94,7 @@ export class Server extends Manager {
       while (!received.isFinished()) {
         const msg = JSON.parse(received.handleData()) as IBaseEvent<unknown>;
         if (msg.e.t === 'msg') {
-          const message = new Message(this, msg as IBaseEvent<IMessage>);
+          const message = new Message(this, msg as IBaseEvent<IMessageReceived>);
           this.bolt.emit('msg', message);
         } else if (msg.e.t === 'join' || msg.e.t === 'leave') {
           const joinOrLeave = new JoinLeave(this, msg as IBaseEvent<IJoinLeave>);

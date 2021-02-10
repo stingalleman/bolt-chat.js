@@ -1,4 +1,4 @@
-import { IMessage } from '../../interfaces';
+import { IMessageSent } from '../../interfaces';
 import { Manager } from '../Manager';
 import { Server } from '../Server/Server';
 
@@ -13,7 +13,7 @@ export class MessageManager extends Manager {
    * @param msg Message to send.
    */
   async send(msg: string): Promise<void> {
-    this.writeData<IMessage>(
+    this.writeData<IMessageSent>(
       this.server,
       this.getEvent('msg', {
         msg: {
